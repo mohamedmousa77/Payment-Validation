@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -21,14 +20,10 @@ class _HomeScreenState extends State<CreditCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color.fromRGBO(34, 53, 53, 1),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   title: const Text('Credit Card View'),
-      // ),
+      backgroundColor:Colors.black,
       resizeToAvoidBottomInset: true,
       body: Container(
-        margin: EdgeInsets.only(top: 150),
+        margin: const EdgeInsets.only(top: 150),
         child: Column(
           children: [
             CreditCardWidget(
@@ -39,7 +34,8 @@ class _HomeScreenState extends State<CreditCardScreen> {
                     cardImage: Image.asset('asset/visa.png',
                       height: 48,
                       width: 48,
-                    ))
+                    )
+                )
               ],
               cardNumber: cardNumber,
               expiryDate: expiryDate,
@@ -89,52 +85,67 @@ class _HomeScreenState extends State<CreditCardScreen> {
                         formKey: formKey,
                         cardNumberDecoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'Number',
-                            hintText: 'xxxx xxxx xxxx xxxx'
+                            labelText: 'Card Number',
+                            hintText: 'xxxx xxxx xxxx xxxx',
+                          labelStyle: TextStyle(color: Colors.white),
+                           hintStyle:  TextStyle(color: Colors.white38),
+
                         ),
                         expiryDateDecoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Expiry Date',
-                            hintText: 'xx/xx'
+                            hintText: 'xx/xx',
+                            labelStyle: TextStyle(color: Colors.white),
+                          hintStyle:  TextStyle(color: Colors.white38),
                         ),
                         cvvCodeDecoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'Cvv',
-                            hintText: 'xxx'
+                            labelText: 'CVV',
+                            hintText: 'xxx',
+                            labelStyle: TextStyle(color: Colors.white),
+                          hintStyle:  TextStyle(color: Colors.white38),
                         ),
                         cardHolderDecoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Card Holder',
+                            labelStyle: TextStyle(color: Colors.white),
+                          hintStyle:  TextStyle(color: Colors.white38),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      ElevatedButton(
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              debugPrint('validate');
-                            }
-                            else {
-                              debugPrint('inValidate');
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ), // RoundedRectangle Border
-                              primary: Color.fromRGBO(210, 140, 84, 1)
-                          ),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+                      GestureDetector(
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            debugPrint('validate');
+                          }
+                          else {
+                            debugPrint('inValidate');
+                          }
+                        },
                           child: Container(
-                            padding: const EdgeInsets.only(left: 15,top: 10),
-                            height: 50,
-                            width: 150,
-                            child: const Text(
-                              'validate',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'halter',
-                                fontSize: 20,
-                                package: 'flutter_credit_card',
-                              ), // TextStyle
+                            decoration: BoxDecoration(
+                              borderRadius:  BorderRadius.circular(8.0),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment(0.8, 1),
+                              colors: [
+                                Color.fromRGBO(63,94,251,1),
+                                Color.fromRGBO(252,70,107,1)
+                              ]
+                              )
+                            ),
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            width:  MediaQuery.of(context).size.width *0.9,
+                            child: const Center(
+                              child:  Text(
+                                'Validate',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'poppins',
+                                  fontSize: 20,
+                                  package: 'flutter_credit_card',
+                                ), // TextStyle
+                              ),
                             ), // Text
                           )
 
